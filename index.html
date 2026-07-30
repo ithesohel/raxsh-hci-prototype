@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  @keyframes lf-spin { to { transform: rotate(360deg); } }
+  @keyframes lf-shimmer { 0% { background-position: -460px 0; } 100% { background-position: 460px 0; } }
+  @keyframes lf-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes lf-fade { from { opacity: 0; } to { opacity: 1; } }
+  textarea, input, button { font-family: 'Figtree', sans-serif; }
+  ::placeholder { color: #a99e92; }
+</style>
+</helmet>
+
+<div style="font-family:'Figtree',sans-serif;color:#231d18;min-height:100vh;-webkit-font-smoothing:antialiased;background:url('assets/raxsh-bg.jpg') center center / cover fixed">
+
+  <!-- ============ ONBOARDING ============ -->
+  <sc-if value="{{ isOnboarding }}" hint-placeholder-val="{{ true }}">
+    <div style="position:fixed;inset:0;background:url('assets/raxsh-bg.jpg') center center / cover;display:flex;align-items:center;justify-content:center;padding:32px;z-index:60">
+      <div style="position:relative;overflow:hidden;width:100%;max-width:660px;background:rgba(250,248,254,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;padding:48px 52px;box-shadow:0 30px 80px rgba(0,0,0,0.35),inset 0 0 0 1px rgba(201,162,74,0.35);animation:lf-up .35s ease">
+        <svg width="200" height="200" viewBox="0 0 140 140" fill="none" style="position:absolute;top:-54px;right:-54px;opacity:0.09;pointer-events:none"><g stroke="#6e3fb0" stroke-width="1.4" fill="none"><circle cx="70" cy="70" r="64"></circle><circle cx="70" cy="70" r="46"></circle><path d="M70 12 L82 58 L128 70 L82 82 L70 128 L58 82 L12 70 L58 58 Z"></path><path d="M70 30 L78 62 L110 70 L78 78 L70 110 L62 78 L30 70 L62 62 Z"></path></g></svg>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:36px;position:relative">
+          <img src="assets/raxsh-logo-trans.png" alt="Raxsh" style="height: 61px; display: block; flex: none; width: 98px">
+        </div>
+
+        <sc-if value="{{ ob0 }}" hint-placeholder-val="{{ true }}">
+          <div style="animation:lf-fade .3s ease">
+            
+            <h1 style="font-size:34px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;line-height:1.1">Turn a few words into an image</h1>
+            
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ ob1 }}" hint-placeholder-val="{{ true }}">
+          <div style="animation:lf-fade .3s ease">
+            <h1 style="font-size:30px;font-weight:800;letter-spacing:-0.03em;margin:0 0 28px;line-height:1.15">How it works</h1>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#fff;border-radius:14px;border:1px solid #e9e4ef">
+                <div style="width:30px;height:30px;border-radius:8px;background:#f3eefb;color:#6e3fb0;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">1</div>
+                <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Describe</div><div style="font-size:14px;color:#6f655c;line-height:1.45">Type a prompt or pick a template.</div></div>
+              </div>
+              <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#fff;border-radius:14px;border:1px solid #e9e4ef">
+                <div style="width:30px;height:30px;border-radius:8px;background:#f3eefb;color:#6e3fb0;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">2</div>
+                <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Choose a style</div><div style="font-size:14px;color:#6f655c;line-height:1.45">Photoreal, watercolor, 3D and more.</div></div>
+              </div>
+              <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#fff;border-radius:14px;border:1px solid #e9e4ef">
+                <div style="width:30px;height:30px;border-radius:8px;background:#f3eefb;color:#6e3fb0;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">3</div>
+                <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Generate</div><div style="font-size:14px;color:#6f655c;line-height:1.45">Watch progress in real time.</div></div>
+              </div>
+              <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#fff;border-radius:14px;border:1px solid #e9e4ef">
+                <div style="width:30px;height:30px;border-radius:8px;background:#f3eefb;color:#6e3fb0;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">4</div>
+                <div><div style="font-weight:700;font-size:16px;margin-bottom:3px">Refine &amp; save</div><div style="font-size:14px;color:#6f655c;line-height:1.45">Tweak it, then keep it in your gallery.</div></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ ob2 }}" hint-placeholder-val="{{ true }}">
+          <div style="animation:lf-fade .3s ease">
+            
+            <h1 style="font-size:30px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;line-height:1.15">A quick note</h1>
+            <p style="font-size:18px;line-height:1.55;color:#6f655c;margin:0 0 14px;max-width:500px">Raxsh is a prototype. Every image you see is a <strong style="color:#231d18">simulated sample output</strong> — not real AI generation.</p>
+            <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;background:#f3eefb;color:#5b2e92;font-size:13px;font-weight:600">Simulated outputs only</div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:40px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <div style="{{ dot0Style }}"></div><div style="{{ dot1Style }}"></div><div style="{{ dot2Style }}"></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <sc-if value="{{ ob0 }}" hint-placeholder-val="{{ true }}"><button onClick="{{ skip }}" style="min-height:46px;padding:0 18px;border:none;background:none;color:#6f655c;font-size:15px;font-weight:600;cursor:pointer;border-radius:10px">Skip</button></sc-if>
+            <sc-if value="{{ ob1 }}" hint-placeholder-val="{{ true }}"><button onClick="{{ obBack }}" style="min-height:46px;padding:0 18px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:15px;font-weight:600;cursor:pointer;border-radius:11px">Back</button></sc-if>
+            <sc-if value="{{ ob2 }}" hint-placeholder-val="{{ true }}"><button onClick="{{ obBack }}" style="min-height:46px;padding:0 18px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:15px;font-weight:600;cursor:pointer;border-radius:11px">Back</button></sc-if>
+            <sc-if value="{{ ob0 }}" hint-placeholder-val="{{ true }}"><button onClick="{{ obNext }}" style="min-height:46px;padding:0 26px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:11px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">Next</button></sc-if>
+            <sc-if value="{{ ob1 }}" hint-placeholder-val="{{ true }}"><button onClick="{{ obNext }}" style="min-height:46px;padding:0 26px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:11px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">Next</button></sc-if>
+            <sc-if value="{{ ob2 }}" hint-placeholder-val="{{ true }}"><button onClick="{{ finish }}" style="min-height:46px;padding:0 26px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:11px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">Start creating</button></sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ APP SHELL ============ -->
+  <sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;min-height:100vh">
+
+      <!-- SIDEBAR -->
+      <aside style="width:248px;flex:none;background:rgba(16,10,26,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#efe9e2;display:flex;flex-direction:column;padding:22px 16px;position:sticky;top:0;height:100vh;border-right:1px solid rgba(201,162,74,0.18)">
+        <div style="display:flex;align-items:center;gap:11px;padding:6px 8px 26px">
+          <img src="assets/raxsh-logo-dark.png" alt="Raxsh" style="height: 47px; display: block; flex: none; width: 71px">
+        </div>
+        <button onClick="{{ goCreate }}" style="display:flex;align-items:center;justify-content:center;gap:9px;min-height:46px;border-radius:11px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:18px;box-shadow:0 6px 16px rgba(110,63,176,0.32)">
+          <span style="font-size:19px;line-height:1">+</span> New creation
+        </button>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#7e7268;padding:4px 10px 8px">Workspace</div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="3">
+            <div onClick="{{ n.onClick }}" style="{{ n.style }}"><span style="font-size:17px;width:18px;text-align:center">{{ n.icon }}</span> {{ n.label }}</div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto">
+          <div onClick="{{ goRationale }}" style="{{ reviewerLinkStyle }}"><span style="font-size:13px;width:18px;text-align:center">◆</span> Design Principles</div>
+          <div style="font-size:10.5px;color:#6b6157;letter-spacing:0.06em;text-transform:uppercase;padding:2px 14px 12px">Prototype appendix</div>
+          <div style="padding:14px 12px 0;border-top:1px solid #332c3e;display:flex;align-items:center;gap:11px">
+            <div style="width: 34px; height: 34px; border-radius: 50%; background: #352d44; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #efe9e2; border-width: 1px; border-style: solid; border-color: #000000">SO</div>
+            <div style="line-height:1.3"><div style="font-size:14px;font-weight:600">Soheil</div><div style="font-size:12px;color:#8e8377">Personal workspace</div></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main style="flex:1;min-width:0;overflow-x:hidden">
+
+        <!-- ===== CREATE FLOW ===== -->
+        <sc-if value="{{ isCreate }}" hint-placeholder-val="{{ true }}">
+          
+        </sc-if>
+
+        <!-- ===== GALLERY ===== -->
+        <sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:1080px;margin:0 auto;padding:34px 44px 110px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:14px;padding:18px 26px;border-radius:16px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(233,228,239,0.7);box-shadow:0 6px 22px rgba(53,30,80,0.08)">
+              <div>
+                <h1 style="font-size:27px;font-weight:800;letter-spacing:-0.03em;margin:0 0 5px;color:#2a1f3d">Your gallery</h1>
+                <p style="font-size:15px;color:#6f655c;margin:0">{{ galleryCount }} saved creations</p>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <button onClick="{{ toggleEmptyGallery }}" style="min-height:40px;padding:0 14px;border:1.5px dashed #d6ccc0;background:#fff;color:#8a7f74;font-size:13px;font-weight:600;cursor:pointer;border-radius:10px">Toggle empty state (demo)</button>
+                <button onClick="{{ goCreate }}" style="min-height:44px;padding:0 20px;border:none;background:#6e3fb0;color:#fff;font-size:14.5px;font-weight:700;cursor:pointer;border-radius:11px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">+ New creation</button>
+              </div>
+            </div>
+
+            <sc-if value="{{ galleryEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="position:relative;overflow:hidden;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px dashed #ddd5e8;border-radius:18px;padding:72px 32px;text-align:center;animation:lf-fade .25s ease">
+                <svg width="220" height="220" viewBox="0 0 140 140" fill="none" style="position:absolute;bottom:-70px;left:-60px;opacity:0.06;pointer-events:none"><g stroke="#6e3fb0" stroke-width="1.4" fill="none"><circle cx="70" cy="70" r="64"></circle><circle cx="70" cy="70" r="46"></circle><path d="M70 12 L82 58 L128 70 L82 82 L70 128 L58 82 L12 70 L58 58 Z"></path></g></svg>
+                <svg width="74" height="74" viewBox="0 0 74 74" fill="none" style="margin:0 auto 20px;display:block;position:relative"><rect width="74" height="74" rx="18" fill="#f3eefb"></rect><path d="M37 13 L45 29 L61 37 L45 45 L37 61 L29 45 L13 37 L29 29 Z" stroke="#6e3fb0" stroke-width="1.8" fill="none"></path><circle cx="37" cy="37" r="4.4" fill="#c9a24a"></circle></svg>
+                <div style="font-size:21px;font-weight:800;margin-bottom:8px">No creations yet</div>
+                <p style="font-size:15px;color:#6f655c;margin:0 auto 26px;max-width:380px;line-height:1.5">Your saved images will appear here. Start by describing what you’d like to see.</p>
+                <button onClick="{{ goCreate }}" style="min-height:48px;padding:0 28px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:12px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">Create your first image</button>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ galleryFilled }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;animation:lf-fade .25s ease">
+                <sc-for list="{{ savedItems }}" as="it" hint-placeholder-count="4">
+                  <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:15px;overflow:hidden;display:flex;flex-direction:column" style-hover="box-shadow:0 10px 28px rgba(35,29,24,0.1)">
+                    <div style="position:relative;aspect-ratio:4/3;background:#ece6f3;overflow:hidden">
+                      <sc-if value="{{ it.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ it.thumb }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if>
+                      <div style="position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:99px;background:rgba(33,28,24,0.78);color:#fff;font-size:11px;font-weight:600">Simulated</div>
+                    </div>
+                    <div style="padding:15px;display:flex;flex-direction:column;flex:1">
+                      <div style="font-size:14.5px;line-height:1.45;font-weight:600;color:#231d18;margin-bottom:10px">{{ it.promptShort }}</div>
+                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+                        <span style="display:inline-flex;padding:4px 10px;border-radius:99px;background:#f3eefb;color:#5b2e92;font-size:12px;font-weight:700">{{ it.style }}</span>
+                        <span style="font-size:12.5px;color:#9a8f84">{{ it.date }}</span>
+                      </div>
+                      <div style="display:flex;gap:8px;margin-top:auto">
+                        <button onClick="{{ it.onReopen }}" style="flex:1;min-height:40px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:13px;font-weight:700;cursor:pointer;border-radius:10px" style-hover="border-color:#6e3fb0;color:#5b2e92">Reopen</button>
+                        <button onClick="{{ it.onDup }}" style="min-height:40px;padding:0 12px;border:1.5px solid #e2dcec;background:#fff;color:#6f655c;font-size:13px;font-weight:600;cursor:pointer;border-radius:10px" style-hover="border-color:#d6ccc0">Duplicate</button>
+                        <button onClick="{{ it.onDel }}" style="min-height:40px;width:40px;border:1.5px solid #e2dcec;background:#fff;color:#9a8f84;font-size:15px;cursor:pointer;border-radius:10px" style-hover="border-color:#e5484d;color:#e5484d">🗑</button>
+                      </div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- ===== INSPIRATION ===== -->
+        <sc-if value="{{ isInspiration }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:1080px;margin:0 auto;padding:34px 44px 110px">
+            <div style="display:inline-block;margin-bottom:26px;padding:18px 26px;border-radius:16px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(233,228,239,0.7);box-shadow:0 6px 22px rgba(53,30,80,0.08)">
+              <h1 style="font-size:27px;font-weight:800;letter-spacing:-0.03em;margin:0 0 5px;color:#2a1f3d">Inspiration</h1>
+              <p style="font-size:15px;color:#6f655c;margin:0">Start from a ready-made idea — pick one and we’ll set up your creation.</p>
+            </div>
+
+            <div style="font-size:13px;font-weight:700;color:#5b2e92;letter-spacing:0.05em;margin:0 0 14px">TEMPLATES</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:34px">
+              <sc-for list="{{ inspireTemplates }}" as="tp" hint-placeholder-count="4">
+                <div onClick="{{ tp.onPick }}" style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px;overflow:hidden;cursor:pointer" style-hover="box-shadow:0 10px 28px rgba(53,30,80,0.14)">
+                  <div style="aspect-ratio:3/2;background:#ece6f3;overflow:hidden"><sc-if value="{{ tp.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ tp.thumb }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if></div>
+                  <div style="padding:13px 15px"><div style="font-weight:700;font-size:14.5px;color:#2a1f3d">{{ tp.title }}</div><div style="font-size:12.5px;color:#8a7f74;margin-top:2px">{{ tp.desc }}</div></div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="font-size:13px;font-weight:700;color:#5b2e92;letter-spacing:0.05em;margin:0 0 14px">EXAMPLE PROMPTS</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px">
+              <sc-for list="{{ inspireExamples }}" as="ex" hint-placeholder-count="6">
+                <button onClick="{{ ex.onUse }}" style="padding:11px 16px;border-radius:99px;border:1px solid rgba(233,228,239,0.9);background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#3f372f;font-size:14px;font-weight:500;cursor:pointer;text-align:left" style-hover="border-color:#6e3fb0;color:#5b2e92">{{ ex.text }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ===== HISTORY (timeline) ===== -->
+        <sc-if value="{{ isTimeline }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:820px;margin:0 auto;padding:34px 44px 110px">
+            <div style="display:inline-block;margin-bottom:26px;padding:18px 26px;border-radius:16px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(233,228,239,0.7);box-shadow:0 6px 22px rgba(53,30,80,0.08)">
+              <h1 style="font-size:27px;font-weight:800;letter-spacing:-0.03em;margin:0 0 5px;color:#2a1f3d">History</h1>
+              <p style="font-size:15px;color:#6f655c;margin:0">A chronological record of your saved creations.</p>
+            </div>
+
+            <sc-if value="{{ timelineEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="background:rgba(255,255,255,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px dashed #ddd5e8;border-radius:18px;padding:60px 32px;text-align:center">
+                <div style="font-size:19px;font-weight:800;margin-bottom:8px;color:#2a1f3d">Nothing here yet</div>
+                <p style="font-size:15px;color:#6f655c;margin:0 auto;max-width:380px;line-height:1.5">Your activity will appear here once you save a creation.</p>
+              </div>
+            </sc-if>
+
+            <sc-for list="{{ timelineItems }}" as="it" hint-placeholder-count="4">
+              <div style="display:flex;gap:16px;align-items:stretch">
+                <div style="display:flex;flex-direction:column;align-items:center;flex:none;width:14px">
+                  <div style="width:12px;height:12px;border-radius:50%;background:#6e3fb0;margin-top:22px;flex:none;box-shadow:0 0 0 4px rgba(110,63,176,0.16)"></div>
+                  <sc-if value="{{ it.notLast }}" hint-placeholder-val="{{ true }}"><div style="flex:1;width:2px;background:rgba(110,63,176,0.18)"></div></sc-if>
+                </div>
+                <div style="flex:1;min-width:0;margin-bottom:16px;display:flex;gap:14px;align-items:center;padding:14px;background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px">
+                  <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;flex:none;background:#ece6f3"><sc-if value="{{ it.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ it.thumb }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if></div>
+                  <div style="min-width:0;flex:1">
+                    <div style="font-size:14.5px;font-weight:600;color:#2a1f3d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ it.promptShort }}</div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-top:5px"><span style="display:inline-flex;padding:3px 9px;border-radius:99px;background:#f3eefb;color:#5b2e92;font-size:11.5px;font-weight:700">{{ it.style }}</span><span style="font-size:12.5px;color:#9a8f84">Saved · {{ it.date }}</span></div>
+                  </div>
+                  <button onClick="{{ it.onReopen }}" style="min-height:38px;padding:0 16px;border:1px solid rgba(233,228,239,0.9);background:#fff;color:#5b2e92;font-size:13px;font-weight:700;cursor:pointer;border-radius:10px;flex:none" style-hover="border-color:#6e3fb0">Reopen</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- ===== RATIONALE ===== -->
+        <sc-if value="{{ isRationale }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:1000px;margin:0 auto;padding:34px 44px 110px">
+            <div style="display:inline-block;margin-bottom:24px;padding:18px 26px;border-radius:16px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(233,228,239,0.7);box-shadow:0 6px 22px rgba(53,30,80,0.08)">
+              <div style="margin-bottom:10px;display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:99px;background:#f3eefb;color:#5b2e92;font-size:13px;font-weight:700">Prototype appendix · presentation only</div>
+              <h1 style="font-size:29px;font-weight:800;letter-spacing:-0.03em;margin:0 0 8px;color:#2a1f3d">Design Principles</h1>
+              <p style="font-size:16px;color:#6f655c;margin:0;max-width:640px;line-height:1.55">How Raxsh supports clear, guided creative work. Each card connects a concrete interface decision to the principle it serves.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+              <sc-for list="{{ heuristics }}" as="h" hint-placeholder-count="6">
+                <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:16px;padding:24px">
+                  <div style="font-size:18px;font-weight:800;letter-spacing:-0.01em;margin-bottom:3px">{{ h.title }}</div>
+                  <div style="font-size:14px;color:#5b2e92;font-weight:600;margin-bottom:14px">{{ h.lead }}</div>
+                  <div style="display:flex;flex-direction:column;gap:10px">
+                    <sc-for list="{{ h.points }}" as="p" hint-placeholder-count="3">
+                      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:#3f372f"><span style="width:18px;height:18px;border-radius:50%;background:#f3eefb;color:#6e3fb0;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px">✓</span>{{ p.text }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+      <div style="max-width:1080px;margin:0 auto;padding:34px 44px 110px">
+            <div style="display:inline-block;margin-bottom:26px;padding:18px 26px;border-radius:16px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(233,228,239,0.7);box-shadow:0 6px 22px rgba(53,30,80,0.08)">
+              <h1 style="font-size:27px;font-weight:800;letter-spacing:-0.03em;margin:0 0 5px;color:#2a1f3d">Create an image</h1>
+              <p style="font-size:15px;color:#6f655c;margin:0">Follow the steps — you can go back anytime.</p>
+            </div>
+
+            <!-- stepper -->
+            <div style="display:flex;align-items:center;gap:10px;padding:18px 22px;background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px;margin-bottom:26px;overflow-x:auto">
+              <sc-for list="{{ stepperItems }}" as="st" hint-placeholder-count="4">
+                <sc-if value="{{ st.notFirst }}" hint-placeholder-val="{{ true }}"><div style="width:40px;height:2px;background:#e9e2d8;flex:none"></div></sc-if>
+                <div onClick="{{ st.onClick }}" style="display:flex;align-items:center;gap:9px;cursor:pointer">
+                  <div style="{{ st.circleStyle }}">{{ st.num }}</div>
+                  <span style="{{ st.labelStyle }}">{{ st.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <!-- DESCRIBE -->
+            <sc-if value="{{ showDescribe }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:24px;align-items:start;animation:lf-fade .25s ease">
+                <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(233,228,239,0.7);border-radius:16px;padding:26px">
+                  <label style="display:block;font-size:16px;font-weight:700;margin-bottom:6px">Describe your image</label>
+                  <p style="font-size:14px;color:#6f655c;margin:0 0 14px">Be specific about subject, setting, and mood. The more detail, the better.</p>
+                  <textarea value="{{ prompt }}" onChange="{{ setPrompt }}" maxlength="400" placeholder="e.g. A serene Japanese garden in autumn, soft morning light, koi pond in the foreground" style="width:100%;min-height:140px;resize:vertical;padding:15px;border:1.5px solid #e2dcec;border-radius:12px;font-size:15px;line-height:1.5;color:#231d18;outline:none;background:#fcfbff" style-focus="border-color:#6e3fb0"></textarea>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+                    <span style="font-size:13px;color:#9a8f84">Tip: add lighting and color words for better results.</span>
+                    <span style="font-size:13px;color:#9a8f84">{{ promptLen }}/400</span>
+                  </div>
+
+                  <div style="font-size:13px;font-weight:700;color:#6f655c;margin:22px 0 10px;letter-spacing:0.02em">NEED INSPIRATION? TAP AN EXAMPLE</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:9px">
+                    <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="4">
+                      <button onClick="{{ ex.onUse }}" style="padding:9px 14px;border-radius:99px;border:1.5px solid #e2dcec;background:#fcfbff;color:#3f372f;font-size:13.5px;font-weight:500;cursor:pointer;text-align:left" style-hover="border-color:#6e3fb0;background:#f3eefb;color:#5b2e92">{{ ex.text }}</button>
+                    </sc-for>
+                  </div>
+
+                  <div style="display:flex;justify-content:flex-end;margin-top:26px">
+                    <button onClick="{{ goStyleStep }}" style="{{ continueBtnStyle }}">Continue to styles →</button>
+                  </div>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(233,228,239,0.7);border-radius:16px;padding:22px">
+                  <div style="font-size:16px;font-weight:700;margin-bottom:4px">Start from a template</div>
+                  <p style="font-size:13.5px;color:#6f655c;margin:0 0 16px">Prefilled prompt and a suggested style.</p>
+                  <div style="display:flex;flex-direction:column;gap:11px">
+                    <sc-for list="{{ templates }}" as="tp" hint-placeholder-count="4">
+                      <div onClick="{{ tp.onPick }}" style="position:relative;display:flex;gap:13px;align-items:center;padding:11px;border:1.5px solid #e9e4ef;border-radius:12px;cursor:pointer;background:#fcfbff" style-hover="border-color:#d6ccc0">
+                        <div style="width:58px;height:50px;border-radius:9px;overflow:hidden;flex:none;background:#ece6f3"><sc-if value="{{ tp.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ tp.thumb }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if></div>
+                        <div style="min-width:0"><div style="font-weight:700;font-size:14.5px">{{ tp.title }}</div><div style="font-size:12.5px;color:#8a7f74;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ tp.desc }}</div></div>
+                        <sc-if value="{{ tp.selected }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;border:2px solid #6e3fb0;border-radius:12px;pointer-events:none"></div><div style="position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:#6e3fb0;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center">✓</div></sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- STYLE -->
+            <sc-if value="{{ showStyle }}" hint-placeholder-val="{{ true }}">
+              <div style="animation:lf-fade .25s ease">
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;flex-wrap:wrap;gap:12px">
+                  <div>
+                    <h2 style="font-size:20px;font-weight:800;margin:0 0 4px">Choose a style</h2>
+                    <p style="font-size:14px;color:#6f655c;margin:0">Pick the look for: <strong style="color:#231d18">“{{ promptSummary }}”</strong></p>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+                  <sc-for list="{{ styles }}" as="st" hint-placeholder-count="6">
+                    <div onClick="{{ st.onPick }}" style="position:relative;border:1.5px solid #e9e4ef;border-radius:14px;overflow:hidden;cursor:pointer;background:#fff" style-hover="border-color:#d6ccc0">
+                      <div style="aspect-ratio:16/10;background:#ece6f3;overflow:hidden"><sc-if value="{{ st.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ st.thumb }}" alt="" style="width:100%;height:100%;object-fit:cover"></sc-if></div>
+                      <div style="padding:13px 15px"><div style="font-weight:700;font-size:15px">{{ st.name }}</div><div style="font-size:13px;color:#8a7f74;margin-top:2px">{{ st.desc }}</div></div>
+                      <sc-if value="{{ st.selected }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;border:2.5px solid #6e3fb0;border-radius:14px;pointer-events:none"></div><div style="position:absolute;inset:5px;border:1px solid rgba(201,162,74,0.6);border-radius:10px;pointer-events:none"></div><div style="position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;background:#6e3fb0;color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.2)">✓</div></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:26px">
+                  <button onClick="{{ backToDescribe }}" style="min-height:46px;padding:0 20px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:15px;font-weight:600;cursor:pointer;border-radius:11px">← Back</button>
+                  <button onClick="{{ generate }}" style="{{ generateBtnStyle }}">✦ Generate image</button>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- GENERATING -->
+            <sc-if value="{{ showGenerating }}" hint-placeholder-val="{{ false }}">
+              <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(233,228,239,0.7);border-radius:16px;padding:48px;text-align:center;animation:lf-fade .25s ease">
+                <div style="width:300px;height:300px;margin:0 auto 30px;border-radius:16px;background:linear-gradient(100deg,#ece6f3 30%,#f4f0f8 50%,#ece6f3 70%);background-size:600px 100%;animation:lf-shimmer 1.4s infinite linear;display:flex;align-items:center;justify-content:center">
+                  <div style="width:42px;height:42px;border:4px solid #e2dcec;border-top-color:#6e3fb0;border-radius:50%;animation:lf-spin .8s linear infinite"></div>
+                </div>
+                <div style="font-size:19px;font-weight:700;margin-bottom:6px">{{ genStatus }}</div>
+                <div style="font-size:14px;color:#8a7f74;margin-bottom:22px">Generating a simulated sample — this won’t take long.</div>
+                <div style="max-width:420px;margin:0 auto">
+                  <div style="height:9px;border-radius:99px;background:#ece6f3;overflow:hidden"><div style="{{ progressFillStyle }}"></div></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;color:#9a8f84;margin-top:8px"><span>Working…</span><span>{{ genProgressPct }}</span></div>
+                </div>
+                <button onClick="{{ cancelGenerate }}" style="margin-top:26px;min-height:44px;padding:0 22px;border:1.5px solid #e2dcec;background:#fff;color:#6f655c;font-size:14px;font-weight:600;cursor:pointer;border-radius:11px">Cancel</button>
+                <div onClick="{{ toggleSimulateFail }}" style="display:inline-flex;align-items:center;gap:10px;margin:24px auto 0;padding:9px 14px;border-radius:99px;background:#f3eff7;cursor:pointer;width:max-content">
+                  <div style="{{ simTrackStyle }}"><div style="{{ simKnobStyle }}"></div></div>
+                  <span style="font-size:13px;font-weight:600;color:#6f655c">Simulate a failed generation (for testing)</span>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ERROR -->
+            <sc-if value="{{ showGenError }}" hint-placeholder-val="{{ false }}">
+              <div style="background:rgba(255,255,255,0.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #f3d3d3;border-radius:16px;padding:48px;text-align:center;animation:lf-fade .25s ease">
+                <div style="width:62px;height:62px;border-radius:50%;background:#fdeaea;color:#e5484d;font-size:30px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">!</div>
+                <div style="font-size:20px;font-weight:800;margin-bottom:8px">Generation failed</div>
+                <p style="font-size:15px;color:#6f655c;margin:0 auto 26px;max-width:420px;line-height:1.5">Something interrupted the render. Your prompt and style are safe — you can try again or adjust the prompt.</p>
+                <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                  <button onClick="{{ retryGenerate }}" style="min-height:46px;padding:0 26px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:11px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">↻ Try again</button>
+                  <button onClick="{{ editPrompt }}" style="min-height:46px;padding:0 22px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:15px;font-weight:600;cursor:pointer;border-radius:11px">Edit prompt</button>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- RESULT -->
+            <sc-if value="{{ showResult }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:26px;align-items:start;animation:lf-fade .25s ease">
+                <div style="position:relative;border-radius:16px;overflow:hidden;background:#ece6f3;border:1px solid #e9e4ef">
+                  <sc-if value="{{ currentImageUrl }}" hint-placeholder-val="{{ false }}"><img src="{{ currentImageUrl }}" alt="Generated sample" style="width:100%;display:block;aspect-ratio:1/1;object-fit:cover"></sc-if>
+                  <div style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:99px;background:rgba(33,28,24,0.82);color:#fff;font-size:12px;font-weight:600;backdrop-filter:blur(4px)">Simulated sample output</div>
+                </div>
+                <div>
+                  <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;background:#e7f6ef;color:#1f7a55;font-size:13px;font-weight:700;margin-bottom:16px">✓ Image ready</div>
+                  <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px;padding:18px;margin-bottom:18px">
+                    <div style="font-size:12px;font-weight:700;color:#9a8f84;letter-spacing:0.05em;margin-bottom:6px">YOUR PROMPT</div>
+                    <div style="font-size:15px;line-height:1.5;color:#231d18;margin-bottom:14px">{{ promptSummary }}</div>
+                    <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#9a8f84">Style</span><span style="display:inline-flex;padding:5px 12px;border-radius:99px;background:#f3eefb;color:#5b2e92;font-size:13px;font-weight:700">{{ styleNameSel }}</span></div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:11px">
+                    <button onClick="{{ saveCreation }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:12px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">♥ Save to gallery</button>
+                    <div style="display:flex;gap:11px">
+                      <button onClick="{{ goRefine }}" style="flex:1;min-height:46px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:14.5px;font-weight:700;cursor:pointer;border-radius:11px">✎ Refine</button>
+                      <button onClick="{{ regenerate }}" style="flex:1;min-height:46px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:14.5px;font-weight:700;cursor:pointer;border-radius:11px">↻ Regenerate</button>
+                    </div>
+                    <button onClick="{{ downloadSim }}" style="min-height:44px;border:none;background:none;color:#8a7f74;font-size:13.5px;font-weight:600;cursor:pointer;border-radius:10px">↓ Download (simulated)</button>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- REFINE -->
+            <sc-if value="{{ showRefine }}" hint-placeholder-val="{{ false }}">
+              <div style="animation:lf-fade .25s ease">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+                  <button onClick="{{ backToResult }}" style="min-height:42px;padding:0 16px;border:1.5px solid #e2dcec;background:#fff;color:#231d18;font-size:14px;font-weight:600;cursor:pointer;border-radius:10px">← Back to result</button>
+                  <div style="font-size:20px;font-weight:800">Refine your image</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:start">
+                  <div>
+                    <div style="position:relative;border-radius:16px;overflow:hidden;background:#ece6f3;border:1px solid #e9e4ef">
+                      <sc-if value="{{ currentImageUrl }}" hint-placeholder-val="{{ false }}"><img src="{{ currentImageUrl }}" alt="Current version" style="width:100%;display:block;aspect-ratio:1/1;object-fit:cover"></sc-if>
+                      <div style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:99px;background:rgba(33,28,24,0.82);color:#fff;font-size:12px;font-weight:600">Simulated sample output</div>
+                      <sc-if value="{{ refining }}" hint-placeholder-val="{{ false }}">
+                        <div style="position:absolute;inset:0;background:rgba(251,248,243,0.78);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;backdrop-filter:blur(2px)">
+                          <div style="width:38px;height:38px;border:4px solid #e2dcec;border-top-color:#6e3fb0;border-radius:50%;animation:lf-spin .8s linear infinite"></div>
+                          <div style="font-size:14px;font-weight:600;color:#6f655c">Applying your change…</div>
+                        </div>
+                      </sc-if>
+                    </div>
+                    <!-- version nav -->
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding:10px 14px;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(233,228,239,0.7);border-radius:12px">
+                      <button onClick="{{ prevVersion }}" style="{{ prevBtnStyle }}">← Previous</button>
+                      <div style="font-size:13.5px;font-weight:700;color:#6f655c">{{ versionLabel }}</div>
+                      <button onClick="{{ nextVersion }}" style="{{ nextBtnStyle }}">Next →</button>
+                    </div>
+                    <div style="font-size:12.5px;color:#9a8f84;text-align:center;margin-top:8px">Every refinement keeps the previous version — step back anytime to undo.</div>
+                  </div>
+
+                  <div style="display:flex;flex-direction:column;gap:18px">
+                    <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px;padding:18px">
+                      <div style="font-size:12px;font-weight:700;color:#9a8f84;letter-spacing:0.05em;margin-bottom:6px">ORIGINAL PROMPT (UNCHANGED)</div>
+                      <div style="font-size:14.5px;line-height:1.5;color:#3f372f">{{ promptSummary }}</div>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px;padding:18px">
+                      <div style="font-size:15px;font-weight:700;margin-bottom:4px">Quick refinements</div>
+                      <p style="font-size:13px;color:#8a7f74;margin:0 0 13px">Each applies a change and creates a new version.</p>
+                      <div style="display:flex;flex-wrap:wrap;gap:9px">
+                        <sc-for list="{{ refineChips }}" as="rc" hint-placeholder-count="5">
+                          <button onClick="{{ rc.onClick }}" style="padding:10px 15px;border-radius:99px;border:1.5px solid #e2dcec;background:#fcfbff;color:#3f372f;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="border-color:#6e3fb0;background:#f3eefb;color:#5b2e92">{{ rc.label }}</button>
+                        </sc-for>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:12px;margin:16px 0"><div style="flex:1;height:1px;background:#e9e4ef"></div><svg width="22" height="10" viewBox="0 0 22 10" fill="none" style="flex:none"><path d="M11 1 L15 5 L11 9 L7 5 Z" stroke="#c9a24a" stroke-width="1" fill="none"></path><circle cx="11" cy="5" r="1" fill="#c9a24a"></circle></svg><div style="flex:1;height:1px;background:#e9e4ef"></div></div>
+                      <div style="font-size:13.5px;font-weight:700;margin-bottom:8px">Or describe a custom change</div>
+                      <input value="{{ refineNote }}" onChange="{{ setRefineNote }}" placeholder="e.g. add soft morning fog" style="width:100%;min-height:44px;padding:0 14px;border:1.5px solid #e2dcec;border-radius:11px;font-size:14.5px;color:#231d18;outline:none;background:#fcfbff;margin-bottom:11px" style-focus="border-color:#6e3fb0">
+                      <button onClick="{{ applyCustom }}" style="{{ customBtnStyle }};width:100%">Apply change</button>
+                    </div>
+
+                    <sc-if value="{{ hasApplied }}" hint-placeholder-val="{{ false }}">
+                      <div style="background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(233,228,239,0.7);border-radius:14px;padding:18px">
+                        <div style="font-size:13px;font-weight:700;color:#9a8f84;letter-spacing:0.05em;margin-bottom:11px">WHAT CHANGED</div>
+                        <div style="display:flex;flex-direction:column;gap:8px">
+                          <sc-for list="{{ appliedList }}" as="ap" hint-placeholder-count="2">
+                            <div style="display:flex;align-items:center;gap:9px;font-size:14px;color:#3f372f"><span style="width:18px;height:18px;border-radius:50%;background:#e7f6ef;color:#1f7a55;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none">✓</span>{{ ap.text }}</div>
+                          </sc-for>
+                        </div>
+                      </div>
+                    </sc-if>
+
+                    <button onClick="{{ saveCreation }}" style="min-height:48px;border:none;background:#6e3fb0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;border-radius:12px;box-shadow:0 6px 16px rgba(110,63,176,0.28)">♥ Save this version</button>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </div></main>
+    </div>
+
+    <!-- TOAST -->
+    <sc-if value="{{ isToast }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:70;animation:lf-up .25s ease">
+        <div style="{{ toastStyle }}">
+          <div style="{{ toastDotStyle }}"></div>
+          <span style="font-size:14.5px;font-weight:600;color:#231d18">{{ toastMsg }}</span>
+          <sc-if value="{{ hasToastAction }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ toastAction }}" style="border:none;background:none;color:#5b2e92;font-size:14px;font-weight:700;cursor:pointer;padding:4px 6px">{{ toastActionLabel }}</button>
+          </sc-if>
+          <button onClick="{{ dismissToast }}" style="border:none;background:none;color:#9a8f84;font-size:16px;cursor:pointer;padding:2px 4px">✕</button>
+        </div>
+      </div>
+    </sc-if>
+
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    screen: 'onboarding', onboardStep: 0,
+    createStep: 0, prompt: '', selectedTemplateId: null, selectedStyleId: null,
+    generating: false, genProgress: 0, genError: false, simulateFail: false,
+    versions: [], versionIndex: 0, refineNote: '', refining: false,
+    saved: [
+      { id: 's1', seed: 'lumacozy77', prompt: 'A cozy reading nook by a rainy window, warm lamplight', style: 'Cinematic', date: '2 days ago' },
+      { id: 's2', seed: 'lumapuppy21', prompt: 'Golden retriever puppy in a field of wildflowers', style: 'Photorealistic', date: 'Apr 16' },
+      { id: 's3', seed: 'lumalogo04', prompt: 'Minimalist mountain logo, single continuous line', style: 'Line Art', date: 'Apr 14' },
+      { id: 's4', seed: 'lumafloat88', prompt: 'Floating islands at golden sunset, dreamy fantasy', style: '3D Render', date: 'Apr 11' },
+    ],
+    showEmptyGallery: false, toast: null, rationaleOpen: false,
+  };
+
+  img(seed, w, h) { return 'https://picsum.photos/seed/' + seed + '/' + w + '/' + h; }
+
+  STYLES() {
+    return [
+      { id: 'photo', name: 'Photorealistic', desc: 'Lifelike detail, natural light', seed: 'stphoto3' },
+      { id: 'cine', name: 'Cinematic', desc: 'Dramatic, film-like mood', seed: 'stcine9' },
+      { id: 'water', name: 'Watercolor', desc: 'Soft painterly washes', seed: 'stwater5' },
+      { id: 'render3d', name: '3D Render', desc: 'Glossy dimensional CGI', seed: 'st3d2' },
+      { id: 'anime', name: 'Anime', desc: 'Bold lines, vibrant shading', seed: 'stanime7' },
+      { id: 'line', name: 'Line Art', desc: 'Clean minimal contours', seed: 'stline1' },
+    ];
+  }
+  TEMPLATES() {
+    return [
+      { id: 'product', title: 'Product shot', desc: 'Studio-lit hero image', prompt: 'A sleek ceramic coffee mug on a marble counter, soft studio lighting, shallow depth of field', styleId: 'photo', seed: 'tpprod' },
+      { id: 'portrait', title: 'Portrait', desc: 'A person or character', prompt: 'Portrait of a smiling older woman with silver curls, warm window light', styleId: 'photo', seed: 'tpport' },
+      { id: 'landscape', title: 'Landscape', desc: 'Scenic environment', prompt: 'Misty pine forest at sunrise, soft light rays through the trees', styleId: 'cine', seed: 'tpland' },
+      { id: 'logo', title: 'Logo concept', desc: 'A simple mark', prompt: 'Minimalist fox logo, single continuous line, terracotta on cream', styleId: 'line', seed: 'tplogo' },
+    ];
+  }
+  EXAMPLES() {
+    return [
+      'A cinematic traveler crossing snowy mountains at dawn',
+      'A quiet courtyard with blue tiles and warm afternoon light',
+      'A modern poster inspired by Persian tile geometry',
+      'An abstract violet-and-gold visual identity for a creative studio',
+      'A friendly robot watering houseplants',
+      'Steaming bowl of ramen, top-down view',
+    ];
+  }
+  CHIPS() { return ['More detailed', 'Change lighting', 'Change color mood', 'Make more realistic', 'Create variation']; }
+  HEURISTICS() {
+    return [
+      { title: 'Learnability', lead: 'New users get productive fast.', points: ['A 3-step welcome explains the flow before the first action.', 'An always-visible stepper shows the path: Describe \u2192 Style \u2192 Generate \u2192 Result.', 'Inline tips and example prompts remove guesswork.'] },
+      { title: 'Visibility of system status', lead: 'The system never goes silent.', points: ['A live progress bar and changing status text during generation.', 'The stepper marks where you are and what is done.', 'Toasts confirm saves, duplicates, and deletions.'] },
+      { title: 'Feedback', lead: 'Every action gets a visible response.', points: ['Hover, selected, disabled, loading, success, and error states on controls.', 'Failed generation offers Retry and Edit prompt \u2014 a clear way out.', 'Selected style and template cards show a check and accent ring.'] },
+      { title: 'Recognition over recall', lead: 'Choose from what you see.', points: ['Example chips, ready-made templates, and visual style cards.', 'The original prompt stays visible while you refine.', 'The gallery shows thumbnails, prompts, styles, and dates.'] },
+      { title: 'Consistency', lead: 'One predictable system.', points: ['A single button hierarchy and label set across all screens.', 'A fixed sidebar and shared layout grid.', 'Refinement chips reuse the same chip pattern as examples.'] },
+      { title: 'Low cognitive load', lead: 'One decision at a time.', points: ['Progressive disclosure splits creation into small steps.', 'Sensible defaults and short, concrete copy.', 'Secondary actions are tucked away until relevant.'] },
+      { title: 'Accessibility', lead: 'Usable for everyone.', points: ['AA-contrast text on warm, glare-free surfaces.', 'Click targets of at least 44px.', 'Clear focus and selection indicators, not color alone.'] },
+    ];
+  }
+
+  styleName(id) { const s = this.STYLES().find(x => x.id === id); return s ? s.name : ''; }
+
+  go(screen) { this.setState({ screen }); }
+  finishOnboarding() { this.setState({ screen: 'create', createStep: 0 }); }
+  obNext() { this.setState(s => ({ onboardStep: Math.min(2, s.onboardStep + 1) })); }
+  obBack() { this.setState(s => ({ onboardStep: Math.max(0, s.onboardStep - 1) })); }
+
+  newCreation() { this.setState({ screen: 'create', createStep: 0, prompt: '', selectedStyleId: null, selectedTemplateId: null, versions: [], versionIndex: 0, genError: false, refineNote: '' }); }
+  inspireFrom(prompt, styleId) { this.setState({ screen: 'create', createStep: styleId ? 1 : 0, prompt: prompt, selectedStyleId: styleId, selectedTemplateId: null, versions: [], versionIndex: 0, genError: false, refineNote: '' }); }
+
+  setPrompt(e) { this.setState({ prompt: e.target.value }); }
+  useExample(t) { this.setState({ prompt: t }); }
+  pickTemplate(t) { this.setState({ prompt: t.prompt, selectedTemplateId: t.id, selectedStyleId: t.styleId }); }
+  pickStyle(id) { this.setState({ selectedStyleId: id }); }
+
+  gotoStep(i) {
+    const active = this.state.createStep === 4 ? 3 : this.state.createStep;
+    if (i <= active && i < 2) { clearInterval(this._timer); this.setState({ createStep: i, generating: false, genError: false }); }
+  }
+  goStyleStep() { if (this.state.prompt.trim().length >= 6) this.setState({ createStep: 1 }); }
+
+  startGenerate() {
+    clearInterval(this._timer);
+    this.setState({ createStep: 2, generating: true, genProgress: 0, genError: false });
+    this._timer = setInterval(() => {
+      this.setState(s => {
+        const p = s.genProgress + (Math.random() * 11 + 7);
+        if (p >= 100) {
+          clearInterval(this._timer);
+          if (s.simulateFail) return { genProgress: 100, generating: false, genError: true };
+          const seed = 'gen' + Math.floor(Math.random() * 99999);
+          return { genProgress: 100, generating: false, createStep: 3, versions: [{ seed, refinements: [], label: 'Original' }], versionIndex: 0 };
+        }
+        return { genProgress: p };
+      });
+    }, 230);
+  }
+  cancelGenerate() { clearInterval(this._timer); this.setState({ generating: false, createStep: 1 }); }
+  retryGenerate() { this.setState({ genError: false, simulateFail: false }); this.startGenerate(); }
+  editPrompt() { clearInterval(this._timer); this.setState({ createStep: 0, generating: false, genError: false }); }
+  toggleSimulateFail() { this.setState(s => ({ simulateFail: !s.simulateFail })); }
+  regenerate() { this.startGenerate(); }
+
+  goRefine() { this.setState({ createStep: 4 }); }
+  backToResult() { this.setState({ createStep: 3 }); }
+  setRefineNote(e) { this.setState({ refineNote: e.target.value }); }
+  applyRefinement(label) {
+    if (!label || !label.trim()) return;
+    this.setState({ refining: true });
+    clearTimeout(this._reft);
+    this._reft = setTimeout(() => {
+      this.setState(s => {
+        const base = s.versions[s.versionIndex] || { refinements: [] };
+        const seed = 'ref' + Math.floor(Math.random() * 99999);
+        const v = { seed, refinements: [...base.refinements, label], label };
+        const versions = [...s.versions.slice(0, s.versionIndex + 1), v];
+        return { versions, versionIndex: versions.length - 1, refining: false, refineNote: '' };
+      });
+    }, 1100);
+  }
+  applyCustom() { const n = this.state.refineNote.trim(); if (n) this.applyRefinement(n); }
+  prevVersion() { this.setState(s => ({ versionIndex: Math.max(0, s.versionIndex - 1) })); }
+  nextVersion() { this.setState(s => ({ versionIndex: Math.min(s.versions.length - 1, s.versionIndex + 1) })); }
+
+  showToast(type, msg, action) { clearTimeout(this._tt); this.setState({ toast: { type, msg, action } }); this._tt = setTimeout(() => this.setState({ toast: null }), 4200); }
+  dismissToast() { clearTimeout(this._tt); this.setState({ toast: null }); }
+
+  saveCreation() {
+    const v = this.state.versions[this.state.versionIndex];
+    if (!v) return;
+    const item = { id: 'c' + Date.now(), seed: v.seed, prompt: this.state.prompt, style: this.styleName(this.state.selectedStyleId) || 'Photorealistic', date: 'Just now' };
+    this.setState(s => ({ saved: [item, ...s.saved], showEmptyGallery: false }));
+    this.showToast('success', 'Saved to your gallery.', { label: 'View', onClick: () => this.go('history') });
+  }
+  reopen(it) {
+    const sid = (this.STYLES().find(x => x.name === it.style) || {}).id || null;
+    this.setState({ screen: 'create', createStep: 3, prompt: it.prompt, selectedStyleId: sid, versions: [{ seed: it.seed, refinements: [], label: 'Original' }], versionIndex: 0 });
+  }
+  duplicate(it) {
+    const copy = { ...it, id: 'c' + Date.now(), date: 'Just now' };
+    this.setState(s => ({ saved: [copy, ...s.saved] }));
+    this.showToast('info', 'Duplicated \u201c' + this.trunc(it.prompt, 32) + '\u201d');
+  }
+  deleteItem(it) {
+    this.setState(s => ({ saved: s.saved.filter(x => x.id !== it.id) }));
+    this.showToast('info', 'Removed from gallery.');
+  }
+  toggleEmptyGallery() { this.setState(s => ({ showEmptyGallery: !s.showEmptyGallery })); }
+  downloadSim() { this.showToast('info', 'Download is simulated in this prototype.'); }
+
+  trunc(t, n) { return t.length > n ? t.slice(0, n - 1) + '\u2026' : t; }
+
+  navStyle(active) {
+    return { display: 'flex', alignItems: 'center', gap: '12px', padding: '11px 14px', borderRadius: '10px', cursor: 'pointer', minHeight: '44px', boxSizing: 'border-box', fontSize: '15px', fontWeight: active ? 700 : 500, color: active ? '#fff' : '#b8ada1', background: active ? 'rgba(110,63,176,0.18)' : 'transparent', border: active ? '1px solid rgba(110,63,176,0.45)' : '1px solid transparent', transition: 'background .15s,color .15s' };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const styles = this.STYLES().map(st => ({ ...st, thumb: this.img(st.seed, 320, 240), selected: s.selectedStyleId === st.id, onPick: () => this.pickStyle(st.id) }));
+    const templates = this.TEMPLATES().map(t => ({ ...t, thumb: this.img(t.seed, 240, 160), selected: s.selectedTemplateId === t.id, onPick: () => this.pickTemplate(t) }));
+    const examples = this.EXAMPLES().map(t => ({ text: t, onUse: () => this.useExample(t) }));
+    const cur = s.versions[s.versionIndex] || null;
+    const refineChips = this.CHIPS().map(c => ({ label: c, onClick: () => this.applyRefinement(c) }));
+    const appliedList = cur ? cur.refinements.map((r, i) => ({ text: r, key: i })) : [];
+    const savedItems = s.saved.map(it => ({ ...it, thumb: this.img(it.seed, 420, 300), promptShort: this.trunc(it.prompt, 64), onReopen: () => this.reopen(it), onDup: () => this.duplicate(it), onDel: () => this.deleteItem(it) }));
+
+    const inspireTemplates = this.TEMPLATES().map(t => ({ ...t, thumb: this.img(t.seed, 360, 240), onPick: () => this.inspireFrom(t.prompt, t.styleId) }));
+    const inspireExamples = this.EXAMPLES().map(t => ({ text: t, onUse: () => this.inspireFrom(t, null) }));
+    const timelineItems = s.saved.map((it, i) => ({ ...it, thumb: this.img(it.seed, 160, 160), promptShort: this.trunc(it.prompt, 72), onReopen: () => this.reopen(it), notLast: i !== s.saved.length - 1 }));
+
+    const active = s.createStep === 4 ? 3 : s.createStep;
+    const stepLabels = ['Describe', 'Style', 'Generate', 'Result'];
+    const stepperItems = stepLabels.map((label, i) => {
+      const done = i < active, isA = i === active;
+      return {
+        label, num: done ? '\u2713' : String(i + 1), notFirst: i > 0, onClick: () => this.gotoStep(i),
+        circleStyle: { width: '30px', height: '30px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 700, flex: 'none', background: isA ? '#6e3fb0' : done ? '#231d18' : '#fff', color: (isA || done) ? '#fff' : '#9a8f84', border: isA ? '2px solid #6e3fb0' : done ? '2px solid #231d18' : '2px solid #e2dcec' },
+        labelStyle: { fontSize: '15px', fontWeight: isA ? 700 : 500, color: isA ? '#231d18' : done ? '#231d18' : '#9a8f84', whiteSpace: 'nowrap' }
+      };
+    });
+
+    const canDescribe = s.prompt.trim().length >= 6;
+    const canGen = !!s.selectedStyleId;
+    const heuristics = this.HEURISTICS().map(h => ({ ...h, points: h.points.map((p, i) => ({ text: p, key: i })) }));
+    const toast = s.toast;
+
+    return {
+      isOnboarding: s.screen === 'onboarding', isApp: s.screen !== 'onboarding',
+      onboardStep: s.onboardStep, ob0: s.onboardStep === 0, ob1: s.onboardStep === 1, ob2: s.onboardStep === 2,
+      obNext: () => this.obNext(), obBack: () => this.obBack(), skip: () => this.finishOnboarding(), finish: () => this.finishOnboarding(),
+      dot0Style: this.dotStyle(s.onboardStep, 0), dot1Style: this.dotStyle(s.onboardStep, 1), dot2Style: this.dotStyle(s.onboardStep, 2),
+
+      isCreate: s.screen === 'create', isHistory: s.screen === 'history', isRationale: s.screen === 'rationale',
+      isInspiration: s.screen === 'inspiration', isTimeline: s.screen === 'timeline',
+      goCreate: () => this.newCreation(), goHistory: () => this.go('history'), goRationale: () => this.go('rationale'),
+      goInspiration: () => this.go('inspiration'), goTimeline: () => this.go('timeline'),
+      navItems: [
+        { key: 'history', icon: '\u25A6', label: 'Gallery', onClick: () => this.go('history'), style: this.navStyle(s.screen === 'history') },
+        { key: 'inspiration', icon: '\u2726', label: 'Inspiration', onClick: () => this.go('inspiration'), style: this.navStyle(s.screen === 'inspiration') },
+        { key: 'timeline', icon: '\u25F7', label: 'History', onClick: () => this.go('timeline'), style: this.navStyle(s.screen === 'timeline') },
+      ],
+      reviewerLinkStyle: { display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 14px', borderRadius: '10px', cursor: 'pointer', minHeight: '40px', boxSizing: 'border-box', fontSize: '13.5px', fontWeight: s.screen === 'rationale' ? 700 : 500, color: s.screen === 'rationale' ? '#d3c2f0' : '#8e8377', background: s.screen === 'rationale' ? 'rgba(110,63,176,0.16)' : 'transparent', transition: 'background .15s,color .15s' },
+
+      stepperItems,
+      showDescribe: s.createStep === 0, showStyle: s.createStep === 1,
+      showGenerating: s.createStep === 2 && s.generating, showGenError: s.createStep === 2 && s.genError,
+      showResult: s.createStep === 3 && !!cur, showRefine: s.createStep === 4 && !!cur,
+
+      prompt: s.prompt, setPrompt: e => this.setPrompt(e), promptLen: s.prompt.length,
+      examples, templates, styles,
+      canDescribe, goStyleStep: () => this.goStyleStep(),
+      continueBtnStyle: this.primaryBtn(canDescribe),
+      canGen, generate: () => this.startGenerate(), generateBtnStyle: this.primaryBtn(canGen),
+      backToDescribe: () => this.setState({ createStep: 0 }),
+
+      genProgress: Math.round(s.genProgress), genProgressPct: Math.min(100, Math.round(s.genProgress)) + '%',
+      progressFillStyle: { height: '100%', borderRadius: '99px', background: '#6e3fb0', transition: 'width .2s ease', width: Math.min(100, Math.round(s.genProgress)) + '%' },
+      genStatus: s.genProgress < 28 ? 'Interpreting your prompt\u2026' : s.genProgress < 58 ? 'Composing the scene\u2026' : s.genProgress < 84 ? 'Rendering details\u2026' : 'Adding finishing touches\u2026',
+      cancelGenerate: () => this.cancelGenerate(),
+      simulateFail: s.simulateFail, toggleSimulateFail: () => this.toggleSimulateFail(),
+      simKnobStyle: { position: 'absolute', top: '2px', left: s.simulateFail ? '20px' : '2px', width: '18px', height: '18px', borderRadius: '50%', background: 'rgba(255,255,255,0.95)', transition: 'left .15s', boxShadow: '0 1px 2px rgba(0,0,0,.3)' },
+      simTrackStyle: { position: 'relative', width: '40px', height: '22px', borderRadius: '99px', background: s.simulateFail ? '#6e3fb0' : '#cfc6ba', transition: 'background .15s', flex: 'none' },
+      retryGenerate: () => this.retryGenerate(), editPrompt: () => this.editPrompt(),
+
+      currentImageUrl: cur ? this.img(cur.seed, 900, 900) : null,
+      promptSummary: s.prompt, styleNameSel: this.styleName(s.selectedStyleId) || 'Photorealistic',
+      saveCreation: () => this.saveCreation(), goRefine: () => this.goRefine(), regenerate: () => this.regenerate(), downloadSim: () => this.downloadSim(),
+
+      refineChips, refineNote: s.refineNote, setRefineNote: e => this.setRefineNote(e), applyCustom: () => this.applyCustom(),
+      hasNote: s.refineNote.trim().length > 0, customBtnStyle: this.primaryBtn(s.refineNote.trim().length > 0),
+      appliedList, hasApplied: appliedList.length > 0,
+      versionLabel: 'Version ' + (s.versionIndex + 1) + ' of ' + s.versions.length,
+      canPrev: s.versionIndex > 0, canNext: s.versionIndex < s.versions.length - 1,
+      prevVersion: () => this.prevVersion(), nextVersion: () => this.nextVersion(),
+      prevBtnStyle: this.ghostBtn(s.versionIndex > 0), nextBtnStyle: this.ghostBtn(s.versionIndex < s.versions.length - 1),
+      refining: s.refining, backToResult: () => this.backToResult(),
+
+      galleryEmpty: s.showEmptyGallery || s.saved.length === 0, galleryFilled: !(s.showEmptyGallery || s.saved.length === 0), savedItems,
+      showEmptyGallery: s.showEmptyGallery, toggleEmptyGallery: () => this.toggleEmptyGallery(),
+      galleryCount: s.saved.length,
+      inspireTemplates, inspireExamples, timelineItems, timelineEmpty: s.saved.length === 0,
+
+      heuristics, rationaleOpen: s.rationaleOpen,
+      openDrawer: () => this.setState({ rationaleOpen: true }), closeDrawer: () => this.setState({ rationaleOpen: false }),
+      openFullRationale: () => this.setState({ rationaleOpen: false, screen: 'rationale' }),
+
+      toast, isToast: !!toast, toastMsg: toast ? toast.msg : '', hasToastAction: !!(toast && toast.action),
+      toastActionLabel: toast && toast.action ? toast.action.label : '', toastAction: toast && toast.action ? toast.action.onClick : () => {},
+      dismissToast: () => this.dismissToast(),
+      toastStyle: { display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '12px', boxShadow: '0 12px 32px rgba(35,29,24,0.22)', background: 'rgba(255,255,255,0.95)', borderLeft: '4px solid ' + (toast && toast.type === 'success' ? '#2d9d6f' : toast && toast.type === 'error' ? '#e5484d' : '#6e3fb0') },
+      toastDotStyle: { width: '10px', height: '10px', borderRadius: '50%', flex: 'none', background: toast && toast.type === 'success' ? '#2d9d6f' : toast && toast.type === 'error' ? '#e5484d' : '#6e3fb0' },
+    };
+  }
+
+  dotStyle(cur, i) { return { width: cur === i ? '24px' : '8px', height: '8px', borderRadius: '99px', background: cur === i ? '#6e3fb0' : '#d8cfc3', transition: 'all .2s' }; }
+  primaryBtn(enabled) { return { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', minHeight: '46px', padding: '0 24px', borderRadius: '11px', border: 'none', fontSize: '15px', fontWeight: 700, fontFamily: 'inherit', color: '#fff', background: enabled ? '#6e3fb0' : '#e6ddd2', cursor: enabled ? 'pointer' : 'not-allowed', boxShadow: enabled ? '0 6px 16px rgba(110,63,176,0.28)' : 'none', transition: 'background .15s,box-shadow .15s' }; }
+  ghostBtn(enabled) { return { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px', minHeight: '40px', padding: '0 14px', borderRadius: '10px', border: '1.5px solid ' + (enabled ? '#d6ccc0' : '#e9e4ef'), background: 'rgba(255,255,255,0.95)', fontSize: '14px', fontWeight: 600, fontFamily: 'inherit', color: enabled ? '#231d18' : '#bcb2a6', cursor: enabled ? 'pointer' : 'not-allowed' }; }
+
+  componentWillUnmount() { clearInterval(this._timer); clearTimeout(this._reft); clearTimeout(this._tt); }
+}
+</script>
+</body>
+</html>
